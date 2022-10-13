@@ -16,7 +16,7 @@ public class LibraryServer {
     private final Server server;
     public LibraryServer(int port){
         this.server = new Server(port);
-        WebAppContext webapp = new WebAppContext();
+        var webapp = new WebAppContext();
         webapp.setContextPath("/");
         webapp.setBaseResource(Resource.newClassPathResource("/webapp"));
         webapp.addServlet(ListBookServlet.class, "/api/books");

@@ -34,7 +34,7 @@ public class LibraryServerTest {
         URL url = server.getURL();
 
 
-        HttpURLConnection connection = getOpenConnection("/");
+        var connection = getOpenConnection("/");
 
         assertThat(connection.getResponseCode()).as(connection.getResponseMessage())
                 .isEqualTo(200);
@@ -45,7 +45,7 @@ public class LibraryServerTest {
 
     @Test
     void shouldReturnBookList() throws IOException {
-        HttpURLConnection connection = getOpenConnection("/api/books");
+        var connection = getOpenConnection("/api/books");
         assertThat(connection.getResponseCode()).as(connection.getResponseMessage())
                 .isEqualTo(200);
         assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8)
