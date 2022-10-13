@@ -19,6 +19,7 @@ public class LibraryServer {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/");
         webapp.setBaseResource(Resource.newClassPathResource("/webapp"));
+        webapp.addServlet(ListBookServlet.class, "/api/books");
         server.setHandler(webapp);
 
     }
