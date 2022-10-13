@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -23,12 +24,17 @@ public class LibraryServerTest {
         server.start();
     }
 
+
+    private HttpURLConnection getOpenConnection(String spec) throws IOException {
+        return (HttpURLConnection) new URL(server.getURL(),spec).openConnection();
+    }
+
     @Test
     void shouldShowFrontPage() throws Exception {
         URL url = server.getURL();
 
 
-        HttpURLConnection connection = (HttpURLConnection) new URL(server.getURL(),"/").openConnection();
+        HttpURLConnection connection = getOpenConnection("/");
 
         assertThat(connection.getResponseCode()).as(connection.getResponseMessage())
                 .isEqualTo(200);
@@ -39,7 +45,7 @@ public class LibraryServerTest {
 
     @Test
     void shouldReturnBookList() throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) new URL(server.getURL(), "/api/books").openConnection();
+        HttpURLConnection connection = getOpenConnection("/api/books");
         assertThat(connection.getResponseCode()).as(connection.getResponseMessage())
                 .isEqualTo(200);
         assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8)
