@@ -17,13 +17,13 @@ import java.util.List;
 
 public class BookEntryPoint {
 
-    private static final List<Book> books = new ArrayList<>();
+    private static final BookRepository books = new BookRepository();
 
     @GET
     @Path("/books")
     public Response getBooks() {
         JsonArrayBuilder booksJson = Json.createArrayBuilder();
-        for (Book book : books) {
+        for (Book book : books.getBooks()) {
             booksJson.add(Json.createObjectBuilder()
                     .add("title", book.getTitle())
             );
