@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import java.io.IOException;
 import java.util.List;
 
@@ -16,16 +18,12 @@ public class ListBookServlet extends HttpServlet {
         exampleBook.setTitle("Example Book");
         var books = List.of(exampleBook);
 
-        resp.getWriter().println("[");
+        JsonArrayBuilder booksJson = Json.createArrayBuilder();
+
         for (Book book : books){
-            resp.getWriter().println("{");
-            resp.getWriter().print("\"title\": \"");
-            resp.getWriter().print(book.getTitle());
-            resp.getWriter().print("\"}");
+            booksJson.add(Json.createObjectBuilder().add("title", book.getTitle()));
         }
-        resp.getWriter().println("]");
 
-
-        resp.getWriter().print("");
+        resp.getWriter().print(booksJson.build().toString());
     }
 }
