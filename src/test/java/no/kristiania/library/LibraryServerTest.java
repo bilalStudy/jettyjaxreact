@@ -49,6 +49,6 @@ public class LibraryServerTest {
         assertThat(connection.getResponseCode()).as(connection.getResponseMessage())
                 .isEqualTo(200);
         assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8)
-                .contains("{\"title\": \"Example Book\"");
+                .contains("{\"title\":\"Example Book\"");
     }
 }
