@@ -16,6 +16,7 @@ public class Book {
 
     public void setAuthor(String author) {
         Author = author;
+
     }
 
     private String title;
