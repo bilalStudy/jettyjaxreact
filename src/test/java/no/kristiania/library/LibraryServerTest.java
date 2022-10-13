@@ -1,11 +1,11 @@
 package no.kristiania.library;
-import  org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LibraryServerTest {
 
