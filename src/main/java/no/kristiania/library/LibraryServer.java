@@ -17,7 +17,7 @@ public class LibraryServer {
     private static final Logger logger = LoggerFactory.getLogger(LibraryServer.class);
 
     private final Server server;
-    public LibraryServer(int port){
+    public LibraryServer(int port) throws IOException {
         this.server = new Server(port);
         server.setHandler(createWebApp());
 
